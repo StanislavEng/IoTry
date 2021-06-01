@@ -1,0 +1,24 @@
+14:54:09 **** Incremental Build of configuration Debug for project Blinky_F429ZI ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Blinky_F429ZI.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\MCUReview\Blinky_F429ZI\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Blinky_F429ZI.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Blinky_F429ZI.elf
+ 
+arm-none-eabi-objdump -h -S  Blinky_F429ZI.elf  > "Blinky_F429ZI.list"
+arm-none-eabi-objcopy  -O binary  Blinky_F429ZI.elf  "Blinky_F429ZI.bin"
+arm-none-eabi-size   Blinky_F429ZI.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12672	     20	   2740	  15432	   3c48	Blinky_F429ZI.elf
+Finished building: default.size.stdout
+ 
+Finished building: Blinky_F429ZI.bin
+ 
+Finished building: Blinky_F429ZI.list
+ 
+14:54:13 **** Incremental Build of configuration Debug for project Blinky_F429ZI ****
+make -j8 all 
+arm-none-eabi-size   Blinky_F429ZI.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12672	     20	   2740	  15432	   3c48	Blinky_F429ZI.elf
+Finished building: default.size.stdout
+ 

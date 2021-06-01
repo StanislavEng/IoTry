@@ -1,0 +1,10 @@
+14:54:13 **** Incremental Build of configuration Debug for project Blinky_F429ZI ****
+make -j8 all 
+arm-none-eabi-size   Blinky_F429ZI.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12672	     20	   2740	  15432	   3c48	Blinky_F429ZI.elf
+Finished building: default.size.stdout
+ 
+
+14:54:13 Build Finished. 0 errors, 0 warnings. (took 366ms)
+
