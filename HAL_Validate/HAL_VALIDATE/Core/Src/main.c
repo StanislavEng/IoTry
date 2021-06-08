@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +54,11 @@ UART_HandleTypeDef huart3;
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 /* USER CODE BEGIN PV */
-
+// address of slave device, 110101x. SD0/SA0 is pulled to ground according to Dev board datasheet therefore x = 0
+//static const uint8_t LSM6_ADDR = 1101010 << 1; // leaving room for R/W bit
+static const uint8_t LSM6_ADDR = 0x6A << 1;
+static const uint8_t XALH_ADDR = 0x28;
+static const uint8_t XALL_ADDR = 0x29;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,7 +87,10 @@ static void MX_TIM16_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	HAL_StatusTypeDef ret;
+	uint8_t buf[16];
+	int16_t val;
+	//float xval;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -118,7 +125,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  buf[0] = XALL_ADDR;
+	  ret = HAL_I2C_Master_Transmit(&hi2c2, LSM6_ADDR, buf, 1, HAL_MAX_DELAY);
+	  if (ret != HAL_OK){
+		  strcpy((char*)buf,"ERROR RX\r\n");
+	  }
+	  else {
+		  ret = HAL_I2C_Master_Receive(&hi2c2, LSM6_ADDR, buf, 2, HAL_MAX_DELAY);
+		  if (ret != HAL_OK){
+		  		  strcpy((char*)buf,"ERROR RX\r\n");
+		  	  }
+		  val = ((int16_t)buf[0] | buf[1] );
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
