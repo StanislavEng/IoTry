@@ -1,0 +1,21 @@
+
+
+
+
+#define RCC_BASE
+#define GPIO_BASE
+
+
+
+
+
+
+int main (void){
+
+
+	while(1){
+
+	}
+
+
+}

@@ -1,25 +1,7 @@
-22:44:28 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+20:09:00 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:92:10: warning: variable 'val' set but not used [-Wunused-but-set-variable]
-   92 |  int16_t val;
-      |          ^~~
-At top level:
-../Core/Src/main.c:60:22: warning: 'XALH_ADDR' defined but not used [-Wunused-const-variable=]
-   60 | static const uint8_t XALH_ADDR = 0x28;
-      |                      ^~~~~~~~~
-arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: HAL_VALIDATE.elf
- 
-arm-none-eabi-objdump -h -S  HAL_VALIDATE.elf  > "HAL_VALIDATE.list"
-arm-none-eabi-objcopy  -O binary  HAL_VALIDATE.elf  "HAL_VALIDATE.bin"
 arm-none-eabi-size   HAL_VALIDATE.elf 
    text	   data	    bss	    dec	    hex	filename
   20060	     20	   3212	  23292	   5afc	HAL_VALIDATE.elf
 Finished building: default.size.stdout
- 
-Finished building: HAL_VALIDATE.bin
- 
-Finished building: HAL_VALIDATE.list
  

@@ -42,7 +42,7 @@
 /* Private variables ---------------------------------------------------------*/
 DFSDM_Channel_HandleTypeDef hdfsdm1_channel1;
 
-I2C_HandleTypeDef hi2c2;
+I2C_HandleTypeDef hi2c2; // declared I2C handler
 
 SPI_HandleTypeDef hspi3;
 
@@ -56,9 +56,16 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 /* USER CODE BEGIN PV */
 // address of slave device, 110101x. SD0/SA0 is pulled to ground according to Dev board datasheet therefore x = 0
 //static const uint8_t LSM6_ADDR = 1101010 << 1; // leaving room for R/W bit
-static const uint8_t LSM6_ADDR = 0x6A << 1;
-static const uint8_t XALH_ADDR = 0x28;
-static const uint8_t XALL_ADDR = 0x29;
+static const uint8_t LSM6_ADDR = 0x6A << 1; // I'm remember what this is? I think this is the 1101010 in 1101 010x
+static const uint8_t XALH_ADDR = 0x28; // first 8 bits
+static const uint8_t XALL_ADDR = 0x29; // next  8 bits
+static const uint8_t YALH_ADDR = 0x30; // first 8 bits
+static const uint8_t YALL_ADDR = 0x31; // next  8 bits
+static const uint8_t ZALH_ADDR = 0x32; // first 8 bits
+static const uint8_t ZALL_ADDR = 0x33; // next  8 bits
+
+//static const uint8_t readAddr = 0xD5; // equivalent of 0x6A << 1;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,6 +79,9 @@ static void MX_USART3_UART_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
 static void MX_TIM16_Init(void);
 /* USER CODE BEGIN PFP */
+HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval);
+HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *yval);
+HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *zval);
 
 /* USER CODE END PFP */
 
@@ -90,7 +100,7 @@ int main(void)
 	HAL_StatusTypeDef ret;
 	uint8_t buf[16];
 	int16_t val;
-	//float xval;
+	float xval;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -137,6 +147,15 @@ int main(void)
 		  	  }
 		  val = ((int16_t)buf[0] | buf[1] );
 	  }
+	  ReadXVal(address, config, *xval);
+	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
+	  HAL_Delay(500);
+	  ReadXVal(address, config, *yval);
+	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
+	  HAL_Delay(500);
+	  ReadXVal(address, config, *zval);
+	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
+	  HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -601,6 +620,78 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
 	    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 	}
+}
+HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval){
+	HAL_StatusTypeDef ret;
+	uint8_t xData[2];
+	ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(dev_address), IMUAdd, 1, &config, 1, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
+
+		for(int i=0; i<5000; i++);
+
+		// Get xval data
+		ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(dev_address) |0x01, 0x00, 1, xData, 2, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
+
+		// Convert to xval
+		// Datasheet shows that digits are
+		*xval = ( (xData[0] << 8) | xData[1]) ;
+
+		return HAL_OK;
+}
+HAL_StatusTypeDef ReadYVal(uint8_t address, uint8_t config, float *yval){
+	HAL_StatusTypeDef ret;
+	uint8_t xData[2];
+	ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(dev_address), IMUAdd, 1, &config, 1, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
+
+		for(int i=0; i<5000; i++);
+
+		// Get xval data
+		ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(dev_address) |0x01, 0x00, 1, yData, 2, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
+
+		// Convert to xval
+		// Datasheet shows that digits are
+		*xval = ( (yData[0] << 8) | yData[1]) ;
+
+		return HAL_OK;
+}
+HAL_StatusTypeDef ReadZVal(uint8_t address, uint8_t config, float *zval){
+	HAL_StatusTypeDef ret;
+	uint8_t zData[2];
+	ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(dev_address), IMUAdd, 1, &config, 1, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
+
+		for(int i=0; i<5000; i++);
+
+		// Get xval data
+		ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(dev_address) |0x01, 0x00, 1, zData, 2, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
+
+		// Convert to xval
+		// Datasheet shows that digits are
+		*xval = ( (zData[0] << 8) |zData[1]) ;
+
+		return HAL_OK;
 }
 /* USER CODE END 4 */
 
