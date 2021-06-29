@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "string.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,12 +58,13 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 // address of slave device, 110101x. SD0/SA0 is pulled to ground according to Dev board datasheet therefore x = 0
 //static const uint8_t LSM6_ADDR = 1101010 << 1; // leaving room for R/W bit
 static const uint8_t LSM6_ADDR = 0x6A << 1; // I'm remember what this is? I think this is the 1101010 in 1101 010x
-static const uint8_t XALH_ADDR = 0x28; // first 8 bits
-static const uint8_t XALL_ADDR = 0x29; // next  8 bits
-static const uint8_t YALH_ADDR = 0x30; // first 8 bits
-static const uint8_t YALL_ADDR = 0x31; // next  8 bits
-static const uint8_t ZALH_ADDR = 0x32; // first 8 bits
-static const uint8_t ZALL_ADDR = 0x33; // next  8 bits
+static const uint8_t XALH_ADDR = 0x29; // first 8 bits
+static const uint8_t XALL_ADDR = 0x28; // next  8 bits (will I need this if I try to read 2 bytes?)
+//static const uint8_t YALH_ADDR = 0x2A; // first 8 bits
+//static const uint8_t YALL_ADDR = 0x2B; // next  8 bits
+//static const uint8_t ZALH_ADDR = 0x2C; // first 8 bits
+//static const uint8_t ZALL_ADDR = 0x2D; // next  8 bits
+static uint8_t config = 0x40;// 01000000;
 
 //static const uint8_t readAddr = 0xD5; // equivalent of 0x6A << 1;
 
@@ -83,6 +85,7 @@ HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval);
 HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *yval);
 HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *zval);
 
+//static void LSM6DSL_INIT(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -98,7 +101,8 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	HAL_StatusTypeDef ret;
-	uint8_t buf[16];
+	uint8_t text[50] = "Hello!\r\n";
+	uint8_t buf[2];
 	int16_t val;
 	float xval;
   /* USER CODE END 1 */
@@ -129,14 +133,22 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
+  //LSM6DSL_INIT();
+  ret = HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &config, 1, 50);
   /* USER CODE END 2 */
-
+  if(ret != HAL_OK)
+  {
+			//return ret;
+	  	  	strcpy((char*)text,"I2C Error\r\n");
+			while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
+  }
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  else{
   while (1)
   {
-	  buf[0] = XALL_ADDR;
-	  ret = HAL_I2C_Master_Transmit(&hi2c2, LSM6_ADDR, buf, 1, HAL_MAX_DELAY);
+	  //buf[0] = XALL_ADDR;
+	  /*ret = HAL_I2C_Master_Transmit(&hi2c2, LSM6_ADDR, buf, 1, HAL_MAX_DELAY);
 	  if (ret != HAL_OK){
 		  strcpy((char*)buf,"ERROR RX\r\n");
 	  }
@@ -155,10 +167,39 @@ int main(void)
 	  HAL_Delay(500);
 	  ReadXVal(address, config, *zval);
 	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
+	  HAL_Delay(500);*/
+	  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 2, HAL_MAX_DELAY);
+	  if (ret != HAL_OK){
+		  strcpy((char*)text,"ERROR RX1\r\n");
+		  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
+	  }
+	  //HAL_Delay(15);
+	 // ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf[0], 1, HAL_MAX_DELAY);
+	 // if(ret != HAL_OK){
+	//	strcpy((char*)text,"ERROR RX2\r\n");
+	//	HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
+	//  }
+	  //else if (ret == HAL_OK){
+	  val = (uint16_t)((buf[1] << 8) | buf[0]);
+	  if ( val > 0x7FF ) {
+		val |= 0xF000;
+	  }
+	  xval = val;
+	  //xval *= 100;
+	  sprintf((char*)text,"%u \r\n",(unsigned int)xval);
+		  //xval = (float)((buf[1] << 8) | buf[0]);
+	  //}
+	  HAL_UART_Transmit(&huart1, text, sizeof(xval), HAL_MAX_DELAY);
 	  HAL_Delay(500);
+
+  }
+
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
 
   }
   /* USER CODE END 3 */
@@ -612,7 +653,14 @@ static void MX_GPIO_Init(void)
 
 }
 
-/* USER CODE BEGIN 4 */
+/* USER CODE BEGIN 4 *//*
+static void LSM6DSL_INIT(void){ // initilizes the sensors
+	static int turnon = 01000000;
+
+	//HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &turnon, 1, HAL_MAX_DELAY); // should turn on the accelerometer
+	//HAL_I2C_Mem_Write(hi2c, DevAddress, MemAddress, MemAddSize, pData, Size, Timeout)
+}*/
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if (htim == &htim16){
 		uint8_t buff[] = "Hello World!!\r\n";
@@ -620,11 +668,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
 	    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 	}
-}
+}/*
 HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval){
 	HAL_StatusTypeDef ret;
-	uint8_t xData[2];
-	ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(dev_address), IMUAdd, 1, &config, 1, 50);
+	//uint8_t xData[2];
+	uint8_t xDataH;
+	uint8_t xDataL;
+	ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(address), 0x10, 1, 01000000, 1, 50);
+	//HAL_I2C_Mem_Write(hi2c, DevAddress, MemAddress, MemAddSize, pData, Size, Timeout)
 		if(ret != HAL_OK)
 		{
 			return ret;
@@ -633,15 +684,20 @@ HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval){
 		for(int i=0; i<5000; i++);
 
 		// Get xval data
-		ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(dev_address) |0x01, 0x00, 1, xData, 2, 50);
+		ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(address) |0x01, XALH_ADDR, 1, xDataH, 1, 50);
+		//HAL_I2C_Mem_Read(hi2c, DevAddress, MemAddress, MemAddSize, pData, Size, Timeout)
 		if(ret != HAL_OK)
 		{
 			return ret;
 		}
-
+		ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(address) |0x01, XALL_ADDR, 1, xDataL, 1, 50);
+		if(ret != HAL_OK)
+		{
+			return ret;
+		}
 		// Convert to xval
 		// Datasheet shows that digits are
-		*xval = ( (xData[0] << 8) | xData[1]) ;
+		*xval = ( (xDataH << 8) | xDataL) ;
 
 		return HAL_OK;
 }
@@ -692,7 +748,7 @@ HAL_StatusTypeDef ReadZVal(uint8_t address, uint8_t config, float *zval){
 		*xval = ( (zData[0] << 8) |zData[1]) ;
 
 		return HAL_OK;
-}
+}*/
 /* USER CODE END 4 */
 
 /**
