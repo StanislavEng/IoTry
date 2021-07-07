@@ -60,11 +60,14 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 static const uint8_t LSM6_ADDR = 0x6A << 1; // I'm remember what this is? I think this is the 1101010 in 1101 010x
 static const uint8_t XALH_ADDR = 0x29; // first 8 bits
 static const uint8_t XALL_ADDR = 0x28; // next  8 bits (will I need this if I try to read 2 bytes?)
+static const uint8_t INT1_CTRL = 0x0D;
 //static const uint8_t YALH_ADDR = 0x2A; // first 8 bits
 //static const uint8_t YALL_ADDR = 0x2B; // next  8 bits
 //static const uint8_t ZALH_ADDR = 0x2C; // first 8 bits
 //static const uint8_t ZALL_ADDR = 0x2D; // next  8 bits
-static uint8_t config = 0x40;// 01000000;
+//static uint8_t config = 0x40;// 01000000;
+static uint8_t config = 0x60;// 01100000;
+static uint8_t intcon = 0x01;
 
 //static const uint8_t readAddr = 0xD5; // equivalent of 0x6A << 1;
 
@@ -102,7 +105,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	HAL_StatusTypeDef ret;
 	uint8_t text[50] = "Hello!\r\n";
-	uint8_t buf[2];
+	uint8_t buf[6];
 	int16_t val;
 	float xval;
   /* USER CODE END 1 */
@@ -134,65 +137,61 @@ int main(void)
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
   //LSM6DSL_INIT();
+  HAL_Delay(15);
+  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
   ret = HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &config, 1, 50);
   /* USER CODE END 2 */
   if(ret != HAL_OK)
   {
-			//return ret;
-	  	  	strcpy((char*)text,"I2C Error\r\n");
-			while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
+		//return ret;
+		strcpy((char*)text,"I2C Error\r\n");
+		while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
   }
+  ret = HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, INT1_CTRL, 1, &intcon, 1, 50);
+    /* USER CODE END 2 */
+    if(ret != HAL_OK)
+    {
+  		//return ret;
+  		strcpy((char*)text,"Int Error\r\n");
+  		while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
+    }
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  else{
   while (1)
-  {
-	  //buf[0] = XALL_ADDR;
-	  /*ret = HAL_I2C_Master_Transmit(&hi2c2, LSM6_ADDR, buf, 1, HAL_MAX_DELAY);
-	  if (ret != HAL_OK){
-		  strcpy((char*)buf,"ERROR RX\r\n");
+  {		/*
+	  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, 0x1E, 1, &buf, 1, HAL_MAX_DELAY);
+	  	  if(ret != HAL_OK)
+	  {
+			//return ret;
+			strcpy((char*)text,"STATUS Error\r\n");
+			while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
 	  }
-	  else {
-		  ret = HAL_I2C_Master_Receive(&hi2c2, LSM6_ADDR, buf, 2, HAL_MAX_DELAY);
+	  if (buf[0] == 1){*/
+		  ret = HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &config, 1, 50);
+		  if(ret != HAL_OK)
+		  {
+				//return ret;
+				strcpy((char*)text,"I2C Error\r\n");
+				while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
+		  }
+		  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY);
 		  if (ret != HAL_OK){
-		  		  strcpy((char*)buf,"ERROR RX\r\n");
-		  	  }
-		  val = ((int16_t)buf[0] | buf[1] );
-	  }
-	  ReadXVal(address, config, *xval);
-	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
-	  HAL_Delay(500);
-	  ReadXVal(address, config, *yval);
-	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
-	  HAL_Delay(500);
-	  ReadXVal(address, config, *zval);
-	  HAL_UART_Transmit(&huart1, buf, 2, HAL_MAX_DELAY);
-	  HAL_Delay(500);*/
-	  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 2, HAL_MAX_DELAY);
-	  if (ret != HAL_OK){
-		  strcpy((char*)text,"ERROR RX1\r\n");
+			  strcpy((char*)text,"ERROR RX1\r\n");
+			  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
+		  }
+		  val = (((uint16_t)buf[0] << 8) | buf[1]);// / 0x4009;
+		  if ( val > 0x7FFF ) {  // why doesn't this work??
+		  //if ((val & 0x8000) == 0x800){
+		  	  val |= 0xF000;
+			 // val = val & 0x0FFF;
+		  }
+		  sprintf((char*)text,"%u \r\n",((unsigned int)(val)));
 		  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
-	  }
-	  //HAL_Delay(15);
-	 // ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf[0], 1, HAL_MAX_DELAY);
-	 // if(ret != HAL_OK){
-	//	strcpy((char*)text,"ERROR RX2\r\n");
-	//	HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
-	//  }
-	  //else if (ret == HAL_OK){
-	  val = (uint16_t)((buf[1] << 8) | buf[0]);
-	  if ( val > 0x7FF ) {
-		val |= 0xF000;
-	  }
-	  xval = val;
-	  //xval *= 100;
-	  sprintf((char*)text,"%u \r\n",(unsigned int)xval);
-		  //xval = (float)((buf[1] << 8) | buf[0]);
-	  //}
-	  HAL_UART_Transmit(&huart1, text, sizeof(xval), HAL_MAX_DELAY);
-	  HAL_Delay(500);
+		  HAL_Delay(200);
 
-  }
+	  }
+
+	  /* USER CODE END 2 */
 
 
 
@@ -203,7 +202,7 @@ int main(void)
 
   }
   /* USER CODE END 3 */
-}
+
 
 /**
   * @brief System Clock Configuration
