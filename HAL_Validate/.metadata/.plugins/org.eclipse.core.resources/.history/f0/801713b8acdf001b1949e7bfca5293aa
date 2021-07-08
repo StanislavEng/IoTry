@@ -151,8 +151,7 @@ int main(void)
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   //LSM6DSL_INIT();
-  HAL_TIM_Base_Start(&htim6);
-  HAL_TIM_Base_Start(&htim7);
+
 
 
   //// code for interrut for IMU

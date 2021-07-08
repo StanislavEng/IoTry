@@ -45,8 +45,7 @@ DFSDM_Channel_HandleTypeDef hdfsdm1_channel1;
 
 I2C_HandleTypeDef hi2c2;
 
-TIM_HandleTypeDef htim6;
-TIM_HandleTypeDef htim7;
+TIM_HandleTypeDef htim16;
 
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart3;
@@ -55,16 +54,16 @@ UART_HandleTypeDef huart3;
 // address of slave device, 110101x. SD0/SA0 is pulled to ground according to Dev board datasheet therefore x = 0
 //static const uint8_t LSM6_ADDR = 1101010 << 1; // leaving room for R/W bit
 static const uint8_t LSM6_ADDR = 0x6A << 1; // I'm remember what this is? I think this is the 1101010 in 1101 010x
-//static const uint8_t XALH_ADDR = 0x29; // first 8 bits
+static const uint8_t XALH_ADDR = 0x29; // first 8 bits
 static const uint8_t XALL_ADDR = 0x28; // next  8 bits (will I need this if I try to read 2 bytes?)
-//static const uint8_t INT1_CTRL = 0x0D;
+static const uint8_t INT1_CTRL = 0x0D;
 //static const uint8_t YALH_ADDR = 0x2A; // first 8 bits
 //static const uint8_t YALL_ADDR = 0x2B; // next  8 bits
 //static const uint8_t ZALH_ADDR = 0x2C; // first 8 bits
 //static const uint8_t ZALL_ADDR = 0x2D; // next  8 bits
 //static uint8_t config = 0x40;// 01000000; // low speed
 static uint8_t config = 0x60;	// 01100000; high speed
-//static uint8_t intcon = 0x01;  // enables interrupt
+static uint8_t intcon = 0x01;  // enables interrupt
 
 //static const uint8_t readAddr = 0xD5; // equivalent of 0x6A << 1;
 
@@ -77,14 +76,11 @@ static void MX_DFSDM1_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART3_UART_Init(void);
-static void MX_TIM6_Init(void);
-static void MX_TIM7_Init(void);
+static void MX_TIM16_Init(void);
 /* USER CODE BEGIN PFP */
 HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval);
 HAL_StatusTypeDef ReadYVal(uint8_t address, uint8_t config, float *yval);
 HAL_StatusTypeDef ReadZVal(uint8_t address, uint8_t config, float *zval);
-void readXval();
-
 
 //static void LSM6DSL_INIT(void);
 /* USER CODE END PFP */
@@ -103,9 +99,9 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	HAL_StatusTypeDef ret; // status of I2C commands
 	uint8_t text[50] = "Hello!\r\n";  // text array for outputting in UART
-	//uint8_t buf[6]; 			 // buffer for register values supposed to be
-	//uint16_t val;  				 // the combined registers of x accelerometer value
-//	float xval;
+	uint8_t buf[6]; 			 // buffer for register values supposed to be
+	uint16_t val;  				 // the combined registers of x accelerometer value
+	float xval;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -114,23 +110,6 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
-  /// initialize IMU before interrupt
-  // wait 15 ms for imu to wake up
-    HAL_Delay(15);
-
-    // print out start message for debugging
-    HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
-
-    //// configure the I2C register for IMU
-    ret = HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &config, 1, 50);
-    if(ret != HAL_OK)
-    {
-  		//return ret;
-  		strcpy((char*)text,"I2C Error\r\n");
-  		while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
-    }
-    ////
 
   /* USER CODE END Init */
 
@@ -147,12 +126,24 @@ int main(void)
   MX_I2C2_Init();
   MX_USART1_UART_Init();
   MX_USART3_UART_Init();
-  MX_TIM6_Init();
-  MX_TIM7_Init();
+  MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
   //LSM6DSL_INIT();
-  HAL_TIM_Base_Start(&htim6);
-  HAL_TIM_Base_Start(&htim7);
+
+  // wait 15 ms for imu to wake up
+  HAL_Delay(15);
+
+  // print out start message for debugging
+  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
+
+  //// configure the I2C register for IMU
+  ret = HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &config, 1, 50);
+  if(ret != HAL_OK)
+  {
+		//return ret;
+		strcpy((char*)text,"I2C Error\r\n");
+		while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
+  }
 
 
   //// code for interrut for IMU
@@ -163,7 +154,7 @@ int main(void)
   		strcpy((char*)text,"Int Error\r\n");
   		while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
     }
-	*/
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -171,9 +162,40 @@ int main(void)
   while (1)
   {
 
-		  //HAL_Delay(200); // waits a bit before next
+	  /* 			would have waited for status to return new values (interrupt)
+	   *
+	  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, 0x1E, 1, &buf, 1, HAL_MAX_DELAY);
+	  	  if(ret != HAL_OK)
+	  {
+			//return ret;
+			strcpy((char*)text,"STATUS Error\r\n");
+			while (1){HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);}
+	  }
+	  if (buf[0] == 1){*/
 
-  }
+	  	  // read values from I2C
+		  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY); //
+		  if (ret != HAL_OK){  // if I2C fails
+			  strcpy((char*)text,"ERROR RX1\r\n");
+			  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
+		  }
+
+		  // combing upper and lower values
+		  val = (((uint16_t)buf[1] << 8) | buf[0]);// / 0x4009;
+
+		  // dealing with the two's complement
+		  if ( val > 0x7FFF ) {  // why doesn't this work??
+		  //if ((val & 0x8000) == 0x800){
+		  	  //val |= 0xF000;
+			  	val = ~val & 0x7FFF;
+		  }
+		  //val = val/350;
+		  // create string value of combined accelerometer x value
+		  sprintf((char*)text,"%u \r\n",((unsigned int)(val)));
+		  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY); // prints
+		  HAL_Delay(200); // waits a bit before next
+
+	  }
 
 	  /* USER CODE END 2 */
 
@@ -339,78 +361,34 @@ static void MX_I2C2_Init(void)
 }
 
 /**
-  * @brief TIM6 Initialization Function
+  * @brief TIM16 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_TIM6_Init(void)
+static void MX_TIM16_Init(void)
 {
 
-  /* USER CODE BEGIN TIM6_Init 0 */
+  /* USER CODE BEGIN TIM16_Init 0 */
 
-  /* USER CODE END TIM6_Init 0 */
+  /* USER CODE END TIM16_Init 0 */
 
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  /* USER CODE BEGIN TIM16_Init 1 */
 
-  /* USER CODE BEGIN TIM6_Init 1 */
-
-  /* USER CODE END TIM6_Init 1 */
-  htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 8000 - 1;
-  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 10000 - 1;
-  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  /* USER CODE END TIM16_Init 1 */
+  htim16.Instance = TIM16;
+  htim16.Init.Prescaler = 8000-1;
+  htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim16.Init.Period = 65535;
+  htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim16.Init.RepetitionCounter = 0;
+  htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim16) != HAL_OK)
   {
     Error_Handler();
   }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM6_Init 2 */
+  /* USER CODE BEGIN TIM16_Init 2 */
 
-  /* USER CODE END TIM6_Init 2 */
-
-}
-
-/**
-  * @brief TIM7 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM7_Init(void)
-{
-
-  /* USER CODE BEGIN TIM7_Init 0 */
-
-  /* USER CODE END TIM7_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM7_Init 1 */
-
-  /* USER CODE END TIM7_Init 1 */
-  htim7.Instance = TIM7;
-  htim7.Init.Prescaler = 16000 - 1;
-  htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 10000 - 1;
-  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM7_Init 2 */
-
-  /* USER CODE END TIM7_Init 2 */
+  /* USER CODE END TIM16_Init 2 */
 
 }
 
@@ -612,55 +590,21 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-/*static void LSM6DSL_INIT(void){ // initilizes the sensors
+static void LSM6DSL_INIT(void){ // initilizes the sensors
 	static int turnon = 01000000;
 
 	//HAL_I2C_Mem_Write(&hi2c2, LSM6_ADDR, 0x10, 1, &turnon, 1, HAL_MAX_DELAY); // should turn on the accelerometer
 	//HAL_I2C_Mem_Write(hi2c, DevAddress, MemAddress, MemAddSize, pData, Size, Timeout)
-}*/
+}
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	if (htim == &htim6){
+	if (htim == &htim16){
 		uint8_t buff[] = "Hello World!!\r\n";
 		HAL_UART_Transmit(&huart1, buff, sizeof(buff), 1000);
 		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
 	    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 	}
-	if (htim == &htim7){
-		readXval();
-	}
-}
-void readXval(){
-
-		HAL_StatusTypeDef ret; // status of I2C commands
-		uint8_t text[50];  // text array for outputting in UART
-		uint8_t buf[6];
-		uint16_t val;
-		// read values from I2C
-		ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY); //
-		if (ret != HAL_OK){  // if I2C fails
-		  strcpy((char*)text,"ERROR RX1\r\n");
-		  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
-		}
-
-		// combing upper and lower values
-		val = (((uint16_t)buf[1] << 8) | buf[0]);// / 0x4009;
-
-		// dealing with the two's complement
-		if ( val > 0x7FFF ) {  // why doesn't this work??
-		//if ((val & 0x8000) == 0x800){
-		  //val |= 0xF000;
-			val = ~val & 0x7FFF;
-		}
-		//val = val/350;
-		// create string value of combined accelerometer x value
-		sprintf((char*)text,"%u \r\n",((unsigned int)(val)));
-		HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY); // prints
-
-}
-
-
-/*
+}/*
 HAL_StatusTypeDef ReadXVal(uint8_t address, uint8_t config, float *xval){
 	HAL_StatusTypeDef ret;
 	//uint8_t xData[2];

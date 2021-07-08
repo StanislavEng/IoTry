@@ -151,8 +151,7 @@ int main(void)
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   //LSM6DSL_INIT();
-  HAL_TIM_Base_Start(&htim6);
-  HAL_TIM_Base_Start(&htim7);
+
 
 
   //// code for interrut for IMU
@@ -358,7 +357,7 @@ static void MX_TIM6_Init(void)
   htim6.Instance = TIM6;
   htim6.Init.Prescaler = 8000 - 1;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 10000 - 1;
+  htim6.Init.Period = 65535;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
@@ -394,9 +393,9 @@ static void MX_TIM7_Init(void)
 
   /* USER CODE END TIM7_Init 1 */
   htim7.Instance = TIM7;
-  htim7.Init.Prescaler = 16000 - 1;
+  htim7.Init.Prescaler = 0;
   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 10000 - 1;
+  htim7.Init.Period = 65535;
   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
   {
@@ -620,13 +619,13 @@ static void MX_GPIO_Init(void)
 }*/
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	if (htim == &htim6){
+	if (htim == &htim16){
 		uint8_t buff[] = "Hello World!!\r\n";
 		HAL_UART_Transmit(&huart1, buff, sizeof(buff), 1000);
 		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
 	    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 	}
-	if (htim == &htim7){
+	if (htim == &htim17){
 		readXval();
 	}
 }
