@@ -3310,3 +3310,278 @@
 2021-07-07 20:29:58,539 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 8197mS.
 2021-07-07 20:29:58,547 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 7mS.
 2021-07-07 20:29:58,549 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
+2021-07-07 22:12:46,299 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 430897952 Bytes (964689920)
+2021-07-07 22:12:47,173 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 451869424 Bytes (964689920)
+2021-07-07 22:12:48,635 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 563301912 Bytes (964689920)
+2021-07-07 22:12:49,066 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: DFSDM
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: SYS
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: RCC
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: I2C
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: NVIC
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM1_8L4
+2021-07-07 22:12:49,067 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM1_8L4
+2021-07-07 22:12:49,068 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: GPIO
+2021-07-07 22:12:49,070 [INFO] CodeGenerator:641 - code generatio: config db path: F:\engineering\STI\theirstuff\IDE\STM32CubeIDE_1.6.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.2.1.202103241236\\db\
+2021-07-07 22:12:50,053 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp_save
+2021-07-07 22:12:50,209 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp
+2021-07-07 22:12:50,493 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp_save
+2021-07-07 22:12:50,566 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp
+2021-07-07 22:12:50,947 [ERROR] IPConfigManager:1461 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2021-07-07 22:12:52,731 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:12:52,733 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:12:52,736 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:12:52,739 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:12:52,764 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c_save
+2021-07-07 22:12:52,878 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c
+2021-07-07 22:12:52,891 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h_save
+2021-07-07 22:12:52,956 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h
+2021-07-07 22:12:52,977 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c_save
+2021-07-07 22:12:53,111 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c
+2021-07-07 22:12:53,117 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp_save
+2021-07-07 22:12:53,173 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp
+2021-07-07 22:12:53,189 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h_save
+2021-07-07 22:12:53,266 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h
+2021-07-07 22:12:53,311 [WARN] IPConfigManager:2976 - IP not found : TIM
+2021-07-07 22:12:53,312 [WARN] CodeGenerator:3191 - IP not found : null
+2021-07-07 22:12:53,329 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h_save
+2021-07-07 22:12:53,404 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h
+2021-07-07 22:12:53,414 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c_save
+2021-07-07 22:12:53,578 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c
+2021-07-07 22:12:54,430 [INFO] ProjectBuilder:2460 - Time for Copy HAL[1] : 180mS.
+2021-07-07 22:12:54,435 [INFO] ProjectBuilder:3418 - Project Generator version: 3.13.0-B3
+2021-07-07 22:12:54,780 [INFO] ConfigFileManager:1242 - The Die is : DIE415
+2021-07-07 22:12:56,882 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 2447mS.
+2021-07-07 22:12:56,884 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 1mS.
+2021-07-07 22:12:56,886 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
+2021-07-07 22:17:16,122 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 637911216 Bytes (1019215872)
+2021-07-07 22:17:17,137 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 659409072 Bytes (1019215872)
+2021-07-07 22:17:18,939 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 711837872 Bytes (1019215872)
+2021-07-07 22:17:19,350 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:17:19,351 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:17:19,351 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: DFSDM
+2021-07-07 22:17:19,351 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: SYS
+2021-07-07 22:17:19,351 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: RCC
+2021-07-07 22:17:19,351 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: I2C
+2021-07-07 22:17:19,351 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: NVIC
+2021-07-07 22:17:19,352 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:17:19,352 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:17:19,353 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: GPIO
+2021-07-07 22:17:19,354 [INFO] CodeGenerator:641 - code generatio: config db path: F:\engineering\STI\theirstuff\IDE\STM32CubeIDE_1.6.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.2.1.202103241236\\db\
+2021-07-07 22:17:20,332 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp_save
+2021-07-07 22:17:20,454 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp
+2021-07-07 22:17:20,744 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp_save
+2021-07-07 22:17:20,804 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp
+2021-07-07 22:17:21,197 [ERROR] IPConfigManager:1461 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2021-07-07 22:17:23,121 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:17:23,122 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:17:23,124 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:17:23,125 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:17:23,150 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c_save
+2021-07-07 22:17:23,240 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c
+2021-07-07 22:17:23,247 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h_save
+2021-07-07 22:17:23,311 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h
+2021-07-07 22:17:23,331 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c_save
+2021-07-07 22:17:23,505 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c
+2021-07-07 22:17:23,510 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp_save
+2021-07-07 22:17:23,557 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp
+2021-07-07 22:17:23,573 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h_save
+2021-07-07 22:17:23,658 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h
+2021-07-07 22:17:23,699 [WARN] IPConfigManager:2976 - IP not found : TIM
+2021-07-07 22:17:23,700 [WARN] CodeGenerator:3191 - IP not found : null
+2021-07-07 22:17:23,716 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h_save
+2021-07-07 22:17:23,784 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h
+2021-07-07 22:17:23,795 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c_save
+2021-07-07 22:17:24,002 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c
+2021-07-07 22:17:24,962 [INFO] ProjectBuilder:2460 - Time for Copy HAL[1] : 137mS.
+2021-07-07 22:17:24,969 [INFO] ProjectBuilder:3418 - Project Generator version: 3.13.0-B3
+2021-07-07 22:17:25,577 [INFO] ConfigFileManager:1242 - The Die is : DIE415
+2021-07-07 22:17:28,053 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 3084mS.
+2021-07-07 22:17:28,054 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 1mS.
+2021-07-07 22:17:28,058 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
+2021-07-07 22:18:37,797 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 423711096 Bytes (1022361600)
+2021-07-07 22:18:38,923 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 446779768 Bytes (1022361600)
+2021-07-07 22:18:40,367 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 552163704 Bytes (1022361600)
+2021-07-07 22:18:40,653 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:18:40,653 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:18:40,653 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: DFSDM
+2021-07-07 22:18:40,653 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: SYS
+2021-07-07 22:18:40,653 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: RCC
+2021-07-07 22:18:40,654 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: I2C
+2021-07-07 22:18:40,654 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: NVIC
+2021-07-07 22:18:40,654 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:18:40,654 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:18:40,655 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: GPIO
+2021-07-07 22:18:40,656 [INFO] CodeGenerator:641 - code generatio: config db path: F:\engineering\STI\theirstuff\IDE\STM32CubeIDE_1.6.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.2.1.202103241236\\db\
+2021-07-07 22:18:41,759 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp_save
+2021-07-07 22:18:41,808 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp
+2021-07-07 22:18:42,048 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp_save
+2021-07-07 22:18:42,106 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp
+2021-07-07 22:18:42,466 [ERROR] IPConfigManager:1461 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2021-07-07 22:18:44,954 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:18:44,956 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:18:44,957 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:18:44,959 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:18:44,987 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c_save
+2021-07-07 22:18:45,107 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c
+2021-07-07 22:18:45,115 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h_save
+2021-07-07 22:18:45,181 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h
+2021-07-07 22:18:45,204 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c_save
+2021-07-07 22:18:45,329 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c
+2021-07-07 22:18:45,335 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp_save
+2021-07-07 22:18:45,383 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp
+2021-07-07 22:18:45,400 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h_save
+2021-07-07 22:18:45,477 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h
+2021-07-07 22:18:45,518 [WARN] IPConfigManager:2976 - IP not found : TIM
+2021-07-07 22:18:45,519 [WARN] CodeGenerator:3191 - IP not found : null
+2021-07-07 22:18:45,537 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h_save
+2021-07-07 22:18:45,599 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h
+2021-07-07 22:18:45,617 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c_save
+2021-07-07 22:18:45,806 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c
+2021-07-07 22:18:46,717 [INFO] ProjectBuilder:2460 - Time for Copy HAL[1] : 163mS.
+2021-07-07 22:18:46,722 [INFO] ProjectBuilder:3418 - Project Generator version: 3.13.0-B3
+2021-07-07 22:18:47,269 [INFO] ConfigFileManager:1242 - The Die is : DIE415
+2021-07-07 22:18:50,294 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 3572mS.
+2021-07-07 22:18:50,296 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 1mS.
+2021-07-07 22:18:50,300 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
+2021-07-07 22:21:12,526 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 483447184 Bytes (1073741824)
+2021-07-07 22:21:13,403 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 504945040 Bytes (1073741824)
+2021-07-07 22:21:15,043 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 557373840 Bytes (1073741824)
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: DFSDM
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: SYS
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: RCC
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: I2C
+2021-07-07 22:21:15,383 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: NVIC
+2021-07-07 22:21:15,384 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:21:15,384 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:21:15,384 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: GPIO
+2021-07-07 22:21:15,385 [INFO] CodeGenerator:641 - code generatio: config db path: F:\engineering\STI\theirstuff\IDE\STM32CubeIDE_1.6.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.2.1.202103241236\\db\
+2021-07-07 22:21:16,247 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp_save
+2021-07-07 22:21:16,409 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp
+2021-07-07 22:21:16,716 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp_save
+2021-07-07 22:21:16,767 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp
+2021-07-07 22:21:17,106 [ERROR] IPConfigManager:1461 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2021-07-07 22:21:20,047 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:21:20,049 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:21:20,051 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:21:20,054 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:21:20,093 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c_save
+2021-07-07 22:21:20,282 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c
+2021-07-07 22:21:20,291 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h_save
+2021-07-07 22:21:20,388 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h
+2021-07-07 22:21:20,421 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c_save
+2021-07-07 22:21:20,657 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c
+2021-07-07 22:21:20,667 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp_save
+2021-07-07 22:21:20,773 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp
+2021-07-07 22:21:20,805 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h_save
+2021-07-07 22:21:20,934 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h
+2021-07-07 22:21:20,993 [WARN] IPConfigManager:2976 - IP not found : TIM
+2021-07-07 22:21:20,996 [WARN] CodeGenerator:3191 - IP not found : null
+2021-07-07 22:21:21,030 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h_save
+2021-07-07 22:21:21,154 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h
+2021-07-07 22:21:21,178 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c_save
+2021-07-07 22:21:21,463 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c
+2021-07-07 22:21:22,886 [INFO] ProjectBuilder:2460 - Time for Copy HAL[1] : 218mS.
+2021-07-07 22:21:22,894 [INFO] ProjectBuilder:3418 - Project Generator version: 3.13.0-B3
+2021-07-07 22:21:23,525 [INFO] ConfigFileManager:1242 - The Die is : DIE415
+2021-07-07 22:21:26,477 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 3583mS.
+2021-07-07 22:21:26,478 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 1mS.
+2021-07-07 22:21:26,483 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
+2021-07-07 22:30:36,045 [INFO] NvicIntPanel:90 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,620x247,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-07-07 22:30:42,167 [INFO] NvicIntPanel:90 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-07-07 22:30:59,469 [INFO] NvicIntPanel:90 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-07-07 22:31:00,110 [INFO] NvicIntPanel:90 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-07-07 22:31:18,398 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 657703736 Bytes (1073741824)
+2021-07-07 22:31:19,134 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 679197496 Bytes (1073741824)
+2021-07-07 22:31:20,440 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 412220584 Bytes (1073741824)
+2021-07-07 22:31:20,791 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:31:20,791 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: DFSDM
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: SYS
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: RCC
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: I2C
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: NVIC
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:31:20,792 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:31:20,793 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: GPIO
+2021-07-07 22:31:20,793 [INFO] CodeGenerator:641 - code generatio: config db path: F:\engineering\STI\theirstuff\IDE\STM32CubeIDE_1.6.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.2.1.202103241236\\db\
+2021-07-07 22:31:21,603 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp_save
+2021-07-07 22:31:21,700 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp
+2021-07-07 22:31:21,942 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp_save
+2021-07-07 22:31:22,010 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp
+2021-07-07 22:31:22,349 [ERROR] IPConfigManager:1461 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2021-07-07 22:31:24,264 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:31:24,266 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:31:24,268 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:31:24,272 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:31:24,307 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c_save
+2021-07-07 22:31:24,464 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c
+2021-07-07 22:31:24,471 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h_save
+2021-07-07 22:31:24,575 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h
+2021-07-07 22:31:24,599 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c_save
+2021-07-07 22:31:24,785 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c
+2021-07-07 22:31:24,791 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp_save
+2021-07-07 22:31:24,852 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp
+2021-07-07 22:31:24,873 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h_save
+2021-07-07 22:31:24,974 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h
+2021-07-07 22:31:25,020 [WARN] IPConfigManager:2976 - IP not found : TIM
+2021-07-07 22:31:25,023 [WARN] CodeGenerator:3191 - IP not found : null
+2021-07-07 22:31:25,043 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h_save
+2021-07-07 22:31:25,117 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h
+2021-07-07 22:31:25,131 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c_save
+2021-07-07 22:31:25,348 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c
+2021-07-07 22:31:26,368 [INFO] ProjectBuilder:2460 - Time for Copy HAL[1] : 156mS.
+2021-07-07 22:31:26,373 [INFO] ProjectBuilder:3418 - Project Generator version: 3.13.0-B3
+2021-07-07 22:31:26,775 [INFO] ConfigFileManager:1242 - The Die is : DIE415
+2021-07-07 22:31:29,479 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 3106mS.
+2021-07-07 22:31:29,481 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 1mS.
+2021-07-07 22:31:29,482 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
+2021-07-07 22:34:02,683 [INFO] I2cTimingTraitement:320 - 0x10909CEC
+2021-07-07 22:34:32,697 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 397332000 Bytes (1073741824)
+2021-07-07 22:34:33,491 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 418882456 Bytes (1073741824)
+2021-07-07 22:34:35,474 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 424628288 Bytes (1073741824)
+2021-07-07 22:34:35,993 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:34:36,007 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: TIM6_7L4
+2021-07-07 22:34:36,007 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: DFSDM
+2021-07-07 22:34:36,008 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: SYS
+2021-07-07 22:34:36,008 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: RCC
+2021-07-07 22:34:36,008 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: I2C
+2021-07-07 22:34:36,008 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: NVIC
+2021-07-07 22:34:36,008 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:34:36,008 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: USART
+2021-07-07 22:34:36,009 [INFO] BlockDiagram:2735 - set Specific Code input for plugin: GPIO
+2021-07-07 22:34:36,010 [INFO] CodeGenerator:641 - code generatio: config db path: F:\engineering\STI\theirstuff\IDE\STM32CubeIDE_1.6.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.2.1.202103241236\\db\
+2021-07-07 22:34:37,185 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp_save
+2021-07-07 22:34:37,437 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\license.tmp
+2021-07-07 22:34:37,716 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp_save
+2021-07-07 22:34:37,804 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\gpio.tmp
+2021-07-07 22:34:38,184 [ERROR] IPConfigManager:1461 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2021-07-07 22:34:40,014 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:34:40,018 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:34:40,020 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:34:40,023 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-07-07 22:34:40,070 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c_save
+2021-07-07 22:34:40,319 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_it.c
+2021-07-07 22:34:40,331 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h_save
+2021-07-07 22:34:40,417 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_it.h
+2021-07-07 22:34:40,437 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c_save
+2021-07-07 22:34:40,579 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\stm32l4xx_hal_msp.c
+2021-07-07 22:34:40,584 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp_save
+2021-07-07 22:34:40,633 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\MXTmpFiles\system.tmp
+2021-07-07 22:34:40,652 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h_save
+2021-07-07 22:34:40,736 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\stm32l4xx_hal_conf.h
+2021-07-07 22:34:40,784 [WARN] IPConfigManager:2976 - IP not found : TIM
+2021-07-07 22:34:40,784 [WARN] CodeGenerator:3191 - IP not found : null
+2021-07-07 22:34:40,800 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h_save
+2021-07-07 22:34:40,883 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Inc\main.h
+2021-07-07 22:34:40,895 [INFO] CodeEngine:229 - oldGeneratedFile, F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c_save
+2021-07-07 22:34:41,061 [INFO] CodeEngine:247 - Generated code: F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\Core\Src\main.c
+2021-07-07 22:34:41,784 [INFO] ProjectBuilder:2460 - Time for Copy HAL[1] : 140mS.
+2021-07-07 22:34:41,787 [INFO] ProjectBuilder:3418 - Project Generator version: 3.13.0-B3
+2021-07-07 22:34:42,361 [INFO] ConfigFileManager:1242 - The Die is : DIE415
+2021-07-07 22:34:44,842 [INFO] ProjectBuilder:3584 - Time for Generating toolchain IDE Files: 3055mS.
+2021-07-07 22:34:44,843 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 1mS.
+2021-07-07 22:34:44,845 [INFO] ProjectBuilder:2339 - Time for Copy CMSIS : 0mS.
