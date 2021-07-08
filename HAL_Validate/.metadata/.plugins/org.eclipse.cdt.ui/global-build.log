@@ -1,9 +1,12 @@
-23:01:42 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+21:11:45 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:158:3: warning: "/*" within comment [-Wcomment]
+  158 |   /* USER CODE END 2 */
+      |    
 ../Core/Src/main.c:177:61: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
-  177 |     ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY);
+  177 |     ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY); //
       |                                                             ^~~~
       |                                                             |
       |                                                             uint8_t (*)[6] {aka unsigned char (*)[6]}
@@ -14,15 +17,26 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:341,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h:613:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
   613 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                         ~~~~~~~~~^~~~~
-../Core/Src/main.c:184:24: warning: bitwise comparison always evaluates to false [-Wtautological-compare]
-  184 |     if ((val & 0x8000) == 0x800){
-      |                        ^~
-../Core/Src/main.c:110:8: warning: unused variable 'xval' [-Wunused-variable]
-  110 |  float xval;
+../Core/Src/main.c:104:8: warning: unused variable 'xval' [-Wunused-variable]
+  104 |  float xval;
       |        ^~~~
+../Core/Src/main.c: In function 'LSM6DSL_INIT':
+../Core/Src/main.c:594:13: warning: unused variable 'turnon' [-Wunused-variable]
+  594 |  static int turnon = 01000000;
+      |             ^~~~~~
 At top level:
-../Core/Src/main.c:61:22: warning: 'XALH_ADDR' defined but not used [-Wunused-const-variable=]
-   61 | static const uint8_t XALH_ADDR = 0x29; // first 8 bits
+../Core/Src/main.c:594:13: warning: 'turnon' defined but not used [-Wunused-variable]
+../Core/Src/main.c:593:13: warning: 'LSM6DSL_INIT' defined but not used [-Wunused-function]
+  593 | static void LSM6DSL_INIT(void){ // initilizes the sensors
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:66:16: warning: 'intcon' defined but not used [-Wunused-variable]
+   66 | static uint8_t intcon = 0x01;  // enables interrupt
+      |                ^~~~~~
+../Core/Src/main.c:59:22: warning: 'INT1_CTRL' defined but not used [-Wunused-const-variable=]
+   59 | static const uint8_t INT1_CTRL = 0x0D;
+      |                      ^~~~~~~~~
+../Core/Src/main.c:57:22: warning: 'XALH_ADDR' defined but not used [-Wunused-const-variable=]
+   57 | static const uint8_t XALH_ADDR = 0x29; // first 8 bits
       |                      ^~~~~~~~~
 arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: HAL_VALIDATE.elf
@@ -31,17 +45,71 @@ arm-none-eabi-objdump -h -S  HAL_VALIDATE.elf  > "HAL_VALIDATE.list"
 arm-none-eabi-objcopy  -O binary  HAL_VALIDATE.elf  "HAL_VALIDATE.bin"
 arm-none-eabi-size   HAL_VALIDATE.elf 
    text	   data	    bss	    dec	    hex	filename
-  23560	    124	   3244	  26928	   6930	HAL_VALIDATE.elf
+  20652	    124	   2108	  22884	   5964	HAL_VALIDATE.elf
 Finished building: default.size.stdout
  
 Finished building: HAL_VALIDATE.bin
  
 Finished building: HAL_VALIDATE.list
  
-23:01:55 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+21:11:50 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
 make -j8 all 
 arm-none-eabi-size   HAL_VALIDATE.elf 
    text	   data	    bss	    dec	    hex	filename
-  23560	    124	   3244	  26928	   6930	HAL_VALIDATE.elf
+  20652	    124	   2108	  22884	   5964	HAL_VALIDATE.elf
 Finished building: default.size.stdout
+ 
+21:16:07 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:158:3: warning: "/*" within comment [-Wcomment]
+  158 |   /* USER CODE END 2 */
+      |    
+../Core/Src/main.c:177:61: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  177 |     ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY); //
+      |                                                             ^~~~
+      |                                                             |
+      |                                                             uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:341,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h:613:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  613 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                         ~~~~~~~~~^~~~~
+../Core/Src/main.c:104:8: warning: unused variable 'xval' [-Wunused-variable]
+  104 |  float xval;
+      |        ^~~~
+../Core/Src/main.c: In function 'LSM6DSL_INIT':
+../Core/Src/main.c:594:13: warning: unused variable 'turnon' [-Wunused-variable]
+  594 |  static int turnon = 01000000;
+      |             ^~~~~~
+At top level:
+../Core/Src/main.c:594:13: warning: 'turnon' defined but not used [-Wunused-variable]
+../Core/Src/main.c:593:13: warning: 'LSM6DSL_INIT' defined but not used [-Wunused-function]
+  593 | static void LSM6DSL_INIT(void){ // initilizes the sensors
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:66:16: warning: 'intcon' defined but not used [-Wunused-variable]
+   66 | static uint8_t intcon = 0x01;  // enables interrupt
+      |                ^~~~~~
+../Core/Src/main.c:59:22: warning: 'INT1_CTRL' defined but not used [-Wunused-const-variable=]
+   59 | static const uint8_t INT1_CTRL = 0x0D;
+      |                      ^~~~~~~~~
+../Core/Src/main.c:57:22: warning: 'XALH_ADDR' defined but not used [-Wunused-const-variable=]
+   57 | static const uint8_t XALH_ADDR = 0x29; // first 8 bits
+      |                      ^~~~~~~~~
+arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HAL_VALIDATE.elf
+ 
+arm-none-eabi-objdump -h -S  HAL_VALIDATE.elf  > "HAL_VALIDATE.list"
+arm-none-eabi-objcopy  -O binary  HAL_VALIDATE.elf  "HAL_VALIDATE.bin"
+arm-none-eabi-size   HAL_VALIDATE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20636	    124	   2108	  22868	   5954	HAL_VALIDATE.elf
+Finished building: default.size.stdout
+ 
+Finished building: HAL_VALIDATE.bin
+ 
+Finished building: HAL_VALIDATE.list
  

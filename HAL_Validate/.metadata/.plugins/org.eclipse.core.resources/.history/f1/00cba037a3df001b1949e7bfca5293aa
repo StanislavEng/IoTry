@@ -189,7 +189,7 @@ int main(void)
 		  	  //val |= 0xF000;
 			  	val = ~val & 0x7FFF;
 		  }
-		  //val = val/350;
+		  val = val/350;
 		  // create string value of combined accelerometer x value
 		  sprintf((char*)text,"%u \r\n",((unsigned int)(val)));
 		  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY); // prints

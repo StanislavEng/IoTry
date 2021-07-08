@@ -174,7 +174,7 @@ int main(void)
 	  if (buf[0] == 1){*/
 
 	  	  // read values from I2C
-		  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY); //
+		  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, 0x27, 1, &buf, 6, HAL_MAX_DELAY); // XALL_ADDR
 		  if (ret != HAL_OK){  // if I2C fails
 			  strcpy((char*)text,"ERROR RX1\r\n");
 			  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY);
@@ -184,12 +184,12 @@ int main(void)
 		  val = (((uint16_t)buf[1] << 8) | buf[0]);// / 0x4009;
 
 		  // dealing with the two's complement
-		  if ( val > 0x7FFF ) {  // why doesn't this work??
+		  /*if ( val > 0x0FFF ) {  // why doesn't this work??
 		  //if ((val & 0x8000) == 0x800){
 		  	  //val |= 0xF000;
-			  	val = ~val & 0x7FFF;
-		  }
-		  //val = val/350;
+			  	val = ~val & 0x0FFF;
+		  }*/
+
 		  // create string value of combined accelerometer x value
 		  sprintf((char*)text,"%u \r\n",((unsigned int)(val)));
 		  HAL_UART_Transmit(&huart1, text, strlen((char*)text), HAL_MAX_DELAY); // prints
