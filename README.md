@@ -1,4 +1,7 @@
 # IoTry
+
+## moving project to new repo : https://github.com/StanislavEng/IoTry_2 
+
 Project to learn and gain more firmware experience hands-on. I will be using the B-L475E-IOT01A Discovery board as the base unit. This will have two sets of folders, one to deal with testing concepts and what systems work (HAL Folder) and one with my actual code developed without the use of libraries.  
   
 The overall objective is to communicate with the different sensors on the board using I2C communication to read the register values from the accelerometer and gyroscope. Then I will create a UART driver to display their information on a serial terminal such as PuTTY.  
