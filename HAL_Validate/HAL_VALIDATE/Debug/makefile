@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := HAL_VALIDATE
+BUILD_ARTIFACT_NAME := BasicIoT
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-HAL_VALIDATE.elf \
+BasicIoT.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-HAL_VALIDATE.list \
+BasicIoT.list \
 
 OBJCOPY_BIN += \
-HAL_VALIDATE.bin \
+BasicIoT.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: HAL_VALIDATE.elf secondary-outputs
+main-build: BasicIoT.elf secondary-outputs
 
 # Tool invocations
-HAL_VALIDATE.elf: $(OBJS) $(USER_OBJS) F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\STM32L475VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\HAL_Validate\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BasicIoT.elf: $(OBJS) $(USER_OBJS) F:\engineering\codespace\IoTry\HAL_Validate\BasicIoT\STM32L475VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BasicIoT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\HAL_Validate\BasicIoT\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BasicIoT.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,13 +71,13 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-HAL_VALIDATE.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "HAL_VALIDATE.list"
+BasicIoT.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BasicIoT.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-HAL_VALIDATE.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "HAL_VALIDATE.bin"
+BasicIoT.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "BasicIoT.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 

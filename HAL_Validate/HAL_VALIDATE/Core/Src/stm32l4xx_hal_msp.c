@@ -77,74 +77,6 @@ void HAL_MspInit(void)
   /* USER CODE END MspInit 1 */
 }
 
-static uint32_t DFSDM1_Init = 0;
-/**
-* @brief DFSDM_Channel MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hdfsdm_channel: DFSDM_Channel handle pointer
-* @retval None
-*/
-void HAL_DFSDM_ChannelMspInit(DFSDM_Channel_HandleTypeDef* hdfsdm_channel)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(DFSDM1_Init == 0)
-  {
-  /* USER CODE BEGIN DFSDM1_MspInit 0 */
-
-  /* USER CODE END DFSDM1_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_DFSDM1_CLK_ENABLE();
-
-    __HAL_RCC_GPIOE_CLK_ENABLE();
-    /**DFSDM1 GPIO Configuration
-    PE7     ------> DFSDM1_DATIN2
-    PE9     ------> DFSDM1_CKOUT
-    */
-    GPIO_InitStruct.Pin = DFSDM1_DATIN2_Pin|DFSDM1_CKOUT_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF6_DFSDM1;
-    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN DFSDM1_MspInit 1 */
-
-  /* USER CODE END DFSDM1_MspInit 1 */
-  DFSDM1_Init++;
-  }
-
-}
-
-/**
-* @brief DFSDM_Channel MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hdfsdm_channel: DFSDM_Channel handle pointer
-* @retval None
-*/
-void HAL_DFSDM_ChannelMspDeInit(DFSDM_Channel_HandleTypeDef* hdfsdm_channel)
-{
-  DFSDM1_Init-- ;
-  if(DFSDM1_Init == 0)
-    {
-  /* USER CODE BEGIN DFSDM1_MspDeInit 0 */
-
-  /* USER CODE END DFSDM1_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_DFSDM1_CLK_DISABLE();
-
-    /**DFSDM1 GPIO Configuration
-    PE7     ------> DFSDM1_DATIN2
-    PE9     ------> DFSDM1_CKOUT
-    */
-    HAL_GPIO_DeInit(GPIOE, DFSDM1_DATIN2_Pin|DFSDM1_CKOUT_Pin);
-
-  /* USER CODE BEGIN DFSDM1_MspDeInit 1 */
-
-  /* USER CODE END DFSDM1_MspDeInit 1 */
-  }
-
-}
-
 /**
 * @brief I2C MSP Initialization
 * This function configures the hardware resources used in this example
@@ -323,30 +255,6 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 
   /* USER CODE END USART1_MspInit 1 */
   }
-  else if(huart->Instance==USART3)
-  {
-  /* USER CODE BEGIN USART3_MspInit 0 */
-
-  /* USER CODE END USART3_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_USART3_CLK_ENABLE();
-
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-    /**USART3 GPIO Configuration
-    PD8     ------> USART3_TX
-    PD9     ------> USART3_RX
-    */
-    GPIO_InitStruct.Pin = INTERNAL_UART3_TX_Pin|INTERNAL_UART3_RX_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF7_USART3;
-    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN USART3_MspInit 1 */
-
-  /* USER CODE END USART3_MspInit 1 */
-  }
 
 }
 
@@ -375,24 +283,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
   /* USER CODE BEGIN USART1_MspDeInit 1 */
 
   /* USER CODE END USART1_MspDeInit 1 */
-  }
-  else if(huart->Instance==USART3)
-  {
-  /* USER CODE BEGIN USART3_MspDeInit 0 */
-
-  /* USER CODE END USART3_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_USART3_CLK_DISABLE();
-
-    /**USART3 GPIO Configuration
-    PD8     ------> USART3_TX
-    PD9     ------> USART3_RX
-    */
-    HAL_GPIO_DeInit(GPIOD, INTERNAL_UART3_TX_Pin|INTERNAL_UART3_RX_Pin);
-
-  /* USER CODE BEGIN USART3_MspDeInit 1 */
-
-  /* USER CODE END USART3_MspDeInit 1 */
   }
 
 }
