@@ -1,7 +1,5 @@
 # IoTry
 
-## moving project to new repo : https://github.com/StanislavEng/IoTry_2 
-
 Project to learn and gain more firmware experience hands-on. I will be using the B-L475E-IOT01A Discovery board as the base unit. This will have two sets of folders, one to deal with testing concepts and what systems work (HAL Folder) and one with my actual code developed without the use of libraries.  
   
 The overall objective is to communicate with the different sensors on the board using I2C communication to read the register values from the accelerometer and gyroscope. Then I will create a UART driver to display their information on a serial terminal such as PuTTY.  
@@ -9,6 +7,10 @@ The overall objective is to communicate with the different sensors on the board 
 Once these steps are complete, I will attempt to learn more about WIFI operation and host a web server using the WIFI module to display the sensor data on a website. If theres room in the code and the pinout of the device, I will try to implement an RTOS to handle all the different systems operating at once.  
   
 I will also create a folder with the most relevant documents used in developing this system. 
+
+#### Additional Background
+The L4 line from STM32 does not have a standard peripheral library, with only HAl and the LL libraries available for usage. Since I'm not too familiar I will be working with the HAL libraries. 
+Why do I continue with this and HAL? I already have the dev kit so I thought I might as well continue working and developing from it. At least for now, until I find some alternatives, which will be coming soon-ish hopefully. Finding a replacement WIFI module will be a bit more annoying. 
 
 ## Why
 
