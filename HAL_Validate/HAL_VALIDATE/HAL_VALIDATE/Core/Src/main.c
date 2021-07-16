@@ -43,9 +43,6 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c2;
 
-TIM_HandleTypeDef htim6;
-TIM_HandleTypeDef htim7;
-
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
@@ -65,8 +62,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_USART1_UART_Init(void);
-static void MX_TIM6_Init(void);
-static void MX_TIM7_Init(void);
 /* USER CODE BEGIN PFP */
 //void readXval(uint8_t* buf);
 //void readYval(uint8_t* buf);
@@ -120,11 +115,9 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C2_Init();
   MX_USART1_UART_Init();
-  MX_TIM6_Init();
-  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start(&htim6);
-  HAL_TIM_Base_Start(&htim7);
+//  HAL_TIM_Base_Start(&htim2);
+//  HAL_TIM_Base_Start(&htim5);
   HAL_Delay(15);
 
   // print out start message for debugging
@@ -244,7 +237,7 @@ static void MX_I2C2_Init(void)
 
   /* USER CODE END I2C2_Init 1 */
   hi2c2.Instance = I2C2;
-  hi2c2.Init.Timing = 0x00000E14;
+  hi2c2.Init.Timing = 0x10909CEC;
   hi2c2.Init.OwnAddress1 = 0;
   hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -271,82 +264,6 @@ static void MX_I2C2_Init(void)
   /* USER CODE BEGIN I2C2_Init 2 */
 
   /* USER CODE END I2C2_Init 2 */
-
-}
-
-/**
-  * @brief TIM6 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM6_Init(void)
-{
-
-  /* USER CODE BEGIN TIM6_Init 0 */
-
-  /* USER CODE END TIM6_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM6_Init 1 */
-
-  /* USER CODE END TIM6_Init 1 */
-  htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 8000 - 1;
-  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 10000 - 1;
-  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM6_Init 2 */
-
-  /* USER CODE END TIM6_Init 2 */
-
-}
-
-/**
-  * @brief TIM7 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM7_Init(void)
-{
-
-  /* USER CODE BEGIN TIM7_Init 0 */
-
-  /* USER CODE END TIM7_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM7_Init 1 */
-
-  /* USER CODE END TIM7_Init 1 */
-  htim7.Instance = TIM7;
-  htim7.Init.Prescaler = 8000 - 1;
-  htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 20000 - 1;
-  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM7_Init 2 */
-
-  /* USER CODE END TIM7_Init 2 */
 
 }
 
@@ -405,10 +322,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOE, M24SR64_Y_RF_DISABLE_Pin|M24SR64_Y_GPO_Pin|ISM43362_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED1_Pin|SPBTLE_RF_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, X_LED_Pin|Y_LED_Pin|LED1_Pin|SPBTLE_RF_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, ISM43362_BOOT0_Pin|ISM43362_WAKEUP_Pin|SPSGRF_915_SDN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, Z_LED_Pin|ISM43362_BOOT0_Pin|ISM43362_WAKEUP_Pin|SPSGRF_915_SDN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
@@ -441,15 +358,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(BUTTON_EXTI13_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED1_Pin SPBTLE_RF_RST_Pin */
-  GPIO_InitStruct.Pin = LED1_Pin|SPBTLE_RF_RST_Pin;
+  /*Configure GPIO pins : X_LED_Pin Y_LED_Pin LED1_Pin SPBTLE_RF_RST_Pin */
+  GPIO_InitStruct.Pin = X_LED_Pin|Y_LED_Pin|LED1_Pin|SPBTLE_RF_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : ISM43362_BOOT0_Pin ISM43362_WAKEUP_Pin LED2_Pin SPSGRF_915_SDN_Pin */
-  GPIO_InitStruct.Pin = ISM43362_BOOT0_Pin|ISM43362_WAKEUP_Pin|LED2_Pin|SPSGRF_915_SDN_Pin;
+  /*Configure GPIO pins : Z_LED_Pin ISM43362_BOOT0_Pin ISM43362_WAKEUP_Pin LED2_Pin
+                           SPSGRF_915_SDN_Pin */
+  GPIO_InitStruct.Pin = Z_LED_Pin|ISM43362_BOOT0_Pin|ISM43362_WAKEUP_Pin|LED2_Pin
+                          |SPSGRF_915_SDN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -491,18 +410,19 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-/*
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){  // some overlap with timers prventing working
-	if (htim == &htim6){
-		uint8_t buff[] = "Hello World!!\r\n";
-		HAL_UART_Transmit(&huart1, buff, sizeof(buff), 1000);
-		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
-	    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-	}
-	if (htim == &htim7){
-		readXval();
-	}
-}*/
+
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){  // some overlap with timers prventing working
+//	if (htim == &htim2){
+////		uint8_t buff[] = "Hello World!!\r\n";
+////		HAL_UART_Transmit(&huart1, buff, sizeof(buff), 1000);
+////		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+////	    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+//		LEDBlink();
+//	}
+//	if (htim == &htim5){
+//		//readXval();
+//	}
+//}
 void LEDBlink (){
 	uint8_t buff[] = "\n\n\n\n\n\n\n\n\n\n\nNew Data Acquired: \r\n";
 	HAL_UART_Transmit(&huart1, buff, sizeof(buff), 1000);
@@ -575,26 +495,73 @@ void readAccel(uint16_t *retval, char *retSi){
 //void LEDfunc(uint16_t *accVal){
 void LEDfunc(uint16_t *accVal, char *acSi){
 	uint8_t out[16];
-	if (accVal[0] > 5000){
-		//strcpy((char*)out,"X is pos");
-		sprintf((char*)out,"X is %c%d\r\n",acSi[0],accVal[0]);
+	///////////////////////////////////////////////////////////////////
+	//////////////////////// Dealing with X values ////////////////////
+
+	if (accVal[0] > 5000){// && !HAL_GPIO_ReadPin(X_LED_GPIO_Port, X_LED_Pin) ){
+
+		sprintf((char*)out,"X is %c%d\r\n",acSi[0],accVal[0]); // for debugging purposes for now
+		if (!HAL_GPIO_ReadPin(X_LED_GPIO_Port, X_LED_Pin)){
+			HAL_GPIO_WritePin(X_LED_GPIO_Port, X_LED_Pin, GPIO_PIN_SET);
+		}
+//		else{
+//			HAL_GPIO_WritePin(X_LED_GPIO_Port, X_LED_Pin, GPIO_PIN_RESET);
+//		}
+		/* // testing how ReadPin and WritePin works
+		//HAL_GPIO(X_LED_GPIO_Port, X_LED_Pin);
+		//HAL_GPIO_WritePin(GPIOx, GPIO_Pin, PinState)
+
+		if (HAL_GPIO_ReadPin(X_LED_GPIO_Port, X_LED_Pin)){
+			strcpy((char*)out,"X is on");
+			HAL_GPIO_WritePin(X_LED_GPIO_Port, X_LED_Pin, GPIO_PIN_RESET);
+		}
+		else{
+			strcpy((char*)out,"X is off");
+			HAL_GPIO_WritePin(X_LED_GPIO_Port, X_LED_Pin, GPIO_PIN_SET);
+		}
+		*/
+
+//		strcpy((char*)out,"X is pos");
+//		sprintf((char*)out,"X is %c%d\r\n",acSi[0],accVal[0]);
 	}
 	else{
 		strcpy((char*)out,"X is low\r\n");
+		if (HAL_GPIO_ReadPin(X_LED_GPIO_Port, X_LED_Pin)){
+			HAL_GPIO_WritePin(X_LED_GPIO_Port, X_LED_Pin, GPIO_PIN_RESET);
+		}
 	}
 	HAL_UART_Transmit(&huart1, out, strlen((char*)out), HAL_MAX_DELAY);
+	///////////////////////////////////////////////////////////////////
+	///////////////////// Dealing with Y values ///////////////////////
 	if (accVal[1] > 5000){
+
 		sprintf((char*)out,"Y is %c%d\r\n",acSi[1],accVal[1]);
+		if (!HAL_GPIO_ReadPin(Y_LED_GPIO_Port, Y_LED_Pin)){
+			HAL_GPIO_WritePin(Y_LED_GPIO_Port, Y_LED_Pin, GPIO_PIN_SET);
+		}
 	}
 	else{
 		strcpy((char*)out,"Y is low\r\n");
+		if (HAL_GPIO_ReadPin(Y_LED_GPIO_Port, Y_LED_Pin)){
+			HAL_GPIO_WritePin(Y_LED_GPIO_Port, Y_LED_Pin, GPIO_PIN_RESET);
+		}
 	}
 	HAL_UART_Transmit(&huart1, out, strlen((char*)out), HAL_MAX_DELAY);
-	if (accVal[2] > 5000){
+	///////////////////////////////////////////////////////////////////
+	///////////////////// Dealing with Z values  //////////////////////
+
+	if (accVal[2] > 5000){ // < 5000){
 		sprintf((char*)out,"Z is %c%d\r\n",acSi[2],accVal[2]);
+		if (!HAL_GPIO_ReadPin(Z_LED_GPIO_Port, Z_LED_Pin)){
+			HAL_GPIO_WritePin(Z_LED_GPIO_Port, Z_LED_Pin, GPIO_PIN_SET);
+		}
 	}
 	else{
+//		strcpy((char*)out,"Z is high (flat)\r\n");
 		strcpy((char*)out,"Z is low\r\n");
+		if (HAL_GPIO_ReadPin(Z_LED_GPIO_Port, Z_LED_Pin)){
+			HAL_GPIO_WritePin(Z_LED_GPIO_Port, Z_LED_Pin, GPIO_PIN_RESET);
+		}
 	}
 	HAL_UART_Transmit(&huart1, out, strlen((char*)out), HAL_MAX_DELAY);
 
@@ -692,16 +659,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 #endif /* USE_FULL_ASSERT */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete

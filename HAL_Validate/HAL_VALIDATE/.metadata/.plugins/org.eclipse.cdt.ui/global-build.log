@@ -1,0 +1,97 @@
+22:24:54 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'readAccel':
+../Core/Src/main.c:441:58: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  441 |  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY);
+      |                                                          ^~~~
+      |                                                          |
+      |                                                          uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:341,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h:613:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  613 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                         ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\IoTry\HAL_Validate\HAL_VALIDATE\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HAL_VALIDATE.elf
+ 
+arm-none-eabi-objdump -h -S  HAL_VALIDATE.elf  > "HAL_VALIDATE.list"
+arm-none-eabi-objcopy  -O binary  HAL_VALIDATE.elf  "HAL_VALIDATE.bin"
+arm-none-eabi-size   HAL_VALIDATE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19688	    124	   1804	  21616	   5470	HAL_VALIDATE.elf
+Finished building: default.size.stdout
+ 
+Finished building: HAL_VALIDATE.bin
+ 
+Finished building: HAL_VALIDATE.list
+ 
+22:25:02 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+make -j8 all 
+arm-none-eabi-size   HAL_VALIDATE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19688	    124	   1804	  21616	   5470	HAL_VALIDATE.elf
+Finished building: default.size.stdout
+ 
+22:25:48 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'readAccel':
+../Core/Src/main.c:441:58: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  441 |  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY);
+      |                                                          ^~~~
+      |                                                          |
+      |                                                          uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:341,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h:613:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  613 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                         ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\IoTry\HAL_Validate\HAL_VALIDATE\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HAL_VALIDATE.elf
+ 
+arm-none-eabi-objdump -h -S  HAL_VALIDATE.elf  > "HAL_VALIDATE.list"
+arm-none-eabi-objcopy  -O binary  HAL_VALIDATE.elf  "HAL_VALIDATE.bin"
+arm-none-eabi-size   HAL_VALIDATE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19756	    124	   1804	  21684	   54b4	HAL_VALIDATE.elf
+Finished building: default.size.stdout
+ 
+Finished building: HAL_VALIDATE.bin
+ 
+Finished building: HAL_VALIDATE.list
+ 
+22:27:35 **** Incremental Build of configuration Debug for project HAL_VALIDATE ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'readAccel':
+../Core/Src/main.c:441:58: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  441 |  ret = HAL_I2C_Mem_Read(&hi2c2, LSM6_ADDR, XALL_ADDR, 1, &buf, 6, HAL_MAX_DELAY);
+      |                                                          ^~~~
+      |                                                          |
+      |                                                          uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:341,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h:613:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  613 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                         ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "HAL_VALIDATE.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\engineering\codespace\IoTry\IoTry\HAL_Validate\HAL_VALIDATE\HAL_VALIDATE\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HAL_VALIDATE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HAL_VALIDATE.elf
+ 
+arm-none-eabi-objdump -h -S  HAL_VALIDATE.elf  > "HAL_VALIDATE.list"
+arm-none-eabi-objcopy  -O binary  HAL_VALIDATE.elf  "HAL_VALIDATE.bin"
+arm-none-eabi-size   HAL_VALIDATE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19780	    124	   1804	  21708	   54cc	HAL_VALIDATE.elf
+Finished building: default.size.stdout
+ 
+Finished building: HAL_VALIDATE.bin
+ 
+Finished building: HAL_VALIDATE.list
+ 

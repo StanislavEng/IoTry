@@ -71,8 +71,14 @@ void Error_Handler(void);
 #define BUTTON_EXTI13_Pin GPIO_PIN_13
 #define BUTTON_EXTI13_GPIO_Port GPIOC
 #define BUTTON_EXTI13_EXTI_IRQn EXTI15_10_IRQn
+#define X_LED_Pin GPIO_PIN_3
+#define X_LED_GPIO_Port GPIOA
+#define Y_LED_Pin GPIO_PIN_4
+#define Y_LED_GPIO_Port GPIOA
 #define LED1_Pin GPIO_PIN_5
 #define LED1_GPIO_Port GPIOA
+#define Z_LED_Pin GPIO_PIN_2
+#define Z_LED_GPIO_Port GPIOB
 #define ISM43362_RST_Pin GPIO_PIN_8
 #define ISM43362_RST_GPIO_Port GPIOE
 #define INTERNAL_I2C2_SCL_Pin GPIO_PIN_10
